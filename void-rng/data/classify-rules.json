@@ -8,7 +8,9 @@
       "petite body", "slim figure", "slim body", "curvy figure", "voluptuous body",
       "athletic build", "toned body", "mature woman", "young woman",
       "east asian", "asian", "fair skin", "smooth skin", "youthful charm",
-      "small breasts", "flat chest", "large breasts", "huge breasts", "medium breasts"
+      "small breasts", "flat chest", "large breasts", "huge breasts", "medium breasts",
+      "dark elf", "dragon girl", "vampire", "female knight", "warrior woman",
+      "shrine maiden", "miko", "gyaru", "jirai kei girl", "ryousangata girl"
     ],
     "negative": [
       "school uniform", "maid outfit", "bikini", "lingerie", "dress", "skirt",
@@ -34,7 +36,11 @@
       "ribbon", "hair clip", "hair ornament", "ahoge", "hime cut", "bob cut",
       "silver hair", "white hair", "black hair", "blonde hair", "pink hair",
       "messy hair", "wet hair", "long hair", "short hair", "hair color",
-      "petite frame", "slim waist", "delicate collarbone", "sweat droplets"
+      "petite frame", "slim waist", "delicate collarbone", "sweat droplets",
+      "wolf cut", "pixie cut", "double braids", "high ponytail", "side ponytail",
+      "fox ears", "fox tail", "pointed ears", "elf ears", "dragon horns",
+      "scaled tail", "freckles", "beauty mark", "hair jewelry", "ear cuffs",
+      "detailed irises", "glossy catchlights", "fairy wings", "mechanical halo"
     ],
     "negative": ["school uniform", "bikini", "selfie", "fellatio", "masterpiece", "indoor"]
   },
@@ -52,7 +58,24 @@
       "fishnet", "bodystocking", "keyhole sweater", "halter", "backless",
       "tube top", "hot pants", "qipao", "cheongsam", "side slit",
       "bustier", "camisole", "towel wrap", "negligee", "pajama", "yukata",
-      "kimono", "nurse uniform", "bunny leotard", "gothic lolita"
+      "kimono", "nurse uniform", "bunny leotard", "gothic lolita",
+      "cardigan", "pinafore", "babydoll", "puff-sleeve", "skater skirt",
+      "varsity jacket", "denim jacket", "moto jacket", "flannel shirt",
+      "cargo skirt", "techwear", "cyberpunk", "Y2K", "harajuku",
+      "slip dress", "cocktail dress", "tweed jacket", "trench coat",
+      "wrap dress", "sequin dress", "shrine maiden", "hakama",
+      "magical girl", "elf dress", "pirate corset", "steampunk",
+      "cyber idol", "catgirl cafe uniform", "demon princess",
+      "sweater dress", "sundress", "puffer jacket", "sleep chemise",
+      "harness bodysuit", "waitress dress", "jirai kei", "ryousangata", "hanfu",
+      "chinese clothing", "knight armor", "adventurer outfit", "witch academy",
+      "vampire dress", "graphic tee", "bike shorts", "parachute cargo pants",
+      "idol outfit", "dance outfit", "tennis dress", "compression leggings",
+      "cottagecore dress", "fairy dress", "dragon princess outfit",
+      "mini qipao", "cyberpunk qipao", "porcelain-pattern qipao", "frog buttons",
+      "french maid", "victorian maid", "cafe maid", "gothic maid", "cyber maid",
+      "race queen", "grid girl", "racing SG", "sponsor-logo suit", "paddock model",
+      "auto show model", "casino showgirl", "cabaret dancer", "booth model"
     ],
     "negative": [
       "standing", "sitting", "kneeling", "selfie", "looking at viewer",
@@ -74,7 +97,17 @@
       "smartphone", "pov", "biting lip", "wall lean", "wet hair",
       "silhouette", "boudoir", "adjusting stocking", "twirling", "bent over",
       "jumping", "mid-air", "spread legs", "all fours", "on bed",
-      "straddling", "mating press", "cowgirl position", "missionary"
+      "straddling", "mating press", "cowgirl position", "missionary",
+      "contrapposto", "sitting on the ground", "one knee up", "cross-legged",
+      "mid-step", "walking away", "brushing hair", "hand heart", "finger heart",
+      "double peace signs", "saluting", "hands behind back", "hands in pockets",
+      "holding umbrella", "holding book", "holding coffee", "adjusting glasses",
+      "drawing sword", "casting magic", "reaching toward viewer", "hugging knees",
+      "qipao pose", "qipao side-slit pose", "seated qipao", "silk fan",
+      "maid curtsy", "maid serving tray", "maid greeting", "feather duster",
+      "race queen grid pose", "checkered flag", "paddock pose", "beside front tire",
+      "sponsor pose", "presenting car", "booth model greeting", "showgirl stage pose",
+      "cabaret dance pose", "showgirl finale pose"
     ],
     "negative": [
       "school uniform", "maid outfit", "bikini", "lace bra", "masterpiece",
@@ -90,7 +123,14 @@
       "penis in mouth", "penis between breasts", "hand on penis",
       "pussyjob", "pussy job", "labia", "vulva", "outercourse",
       "grinding on penis", "through panties", "no penetration",
-      "saliva trail", "drool", "cum", "ejaculation"
+      "saliva trail", "drool", "cum", "ejaculation",
+      "vaginal sex", "vaginal penetration", "missionary sex", "mating press",
+      "legs over shoulders", "edge-of-bed", "cowgirl sex", "reverse cowgirl",
+      "seated cowgirl", "squatting cowgirl", "doggy style sex", "standing doggy",
+      "rear-entry penetration", "prone bone", "spooning sex", "wall sex",
+      "masturbating", "vibrator", "clitoral stimulation", "riding dildo", "sex toy",
+      "adult lesbian", "scissoring", "creampie", "facial cumshot",
+      "consenting adult", "consenting adults"
     ],
     "negative": ["selfie", "school uniform", "masterpiece", "outdoor"]
   },
@@ -101,7 +141,11 @@
       "city", "street", "window", "background", "lighting", "daylight",
       "night", "neon", "bokeh", "studio", "atmosphere", "sunset",
       "golden hour", "soft light", "rim light", "ambient", "setting",
-      "sky", "ocean", "cafe", "classroom", "love hotel", "onsen"
+      "sky", "ocean", "cafe", "classroom", "love hotel", "onsen", "library",
+      "train platform", "tatami", "shoji screens", "shrine courtyard", "torii gates",
+      "cherry blossom", "bamboo forest", "enchanted forest", "fantasy castle",
+      "cyberpunk alley", "holographic signs", "photo studio", "softbox",
+      "wet pavement", "rainy window", "snowy street"
     ],
     "negative": ["dress", "skirt", "blush", "smile", "fellatio"]
   },
@@ -111,7 +155,12 @@
       "anime", "illustration", "photorealistic", "realistic", "painting",
       "watercolor", "digital art", "cel-shaded", "style", "aesthetic",
       "moe", "pixiv", "eroge", "concept art", "cinematic", "oil painting",
-      "fan-service", "fan service", "glossy", "brush", "game cg", "doujin"
+      "fan-service", "fan service", "glossy", "brush", "game cg", "doujin",
+      "vivid anime illustration", "luminous color palette", "expressive lineart",
+      "delicate lineart", "thin linework", "painterly shading", "soft cel shading",
+      "translucent coloring", "eye-focused rendering", "soft bloom", "kawaii tech",
+      "jirai kei aesthetic", "chinese fantasy", "korean webtoon", "1990s anime",
+      "semi-realistic anime", "vector anime"
     ],
     "negative": ["standing", "bikini", "selfie", "bedroom"]
   },
@@ -122,7 +171,11 @@
       "high resolution", "highres", "absurdres", "8k", "4k", "sharp focus",
       "detailed", "perfect anatomy", "perfect hands", "perfect face",
       "no text", "no watermark", "raw photo", "intricate", "high quality",
-      "quality", "nsfw", "explicit"
+      "quality", "nsfw", "explicit", "crisp edges", "clean rendering",
+      "no compression artifacts", "natural color balance", "detailed facial rendering",
+      "detailed irises", "accurate hands", "accurate fingers", "centered subject",
+      "wallpaper composition", "balanced negative space", "professional color grading",
+      "atmospheric depth", "high dpi", "consistent character design"
     ],
     "negative": []
   }
