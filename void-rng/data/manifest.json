@@ -1,8 +1,9 @@
 {
-  "version": 6,
+  "version": 9,
   "char": [
     "char-sections.json",
     "char-banks.json",
+    "p-prompt-templates.json",
     "body-combos.json",
     "body-frame-types.json",
     "body-breast-types.json",
@@ -16,7 +17,9 @@
     "spicy-action-types.json",
     "preset-body-map.json",
     "tone-markers.json",
-    "pix-formula-templates.json"
+    "pix-formula-templates.json",
+    "nullcraft-char-banks.json",
+    "nullcraft-presets.json"
   ],
   "style": [
     "style-codes.json",

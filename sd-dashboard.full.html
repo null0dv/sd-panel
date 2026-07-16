@@ -15,6 +15,7 @@
 <script src="js/void-gen-flow.js"></script>
 <script src="js/void-jszip-loader.js"></script>
 <script src="js/void-pwa.js"></script>
+<script src="js/void-pixai.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap');
 :root {
@@ -1569,7 +1570,7 @@ function _runGalleryCardAction(action, card) {
   switch (action) {
     case 'fav': toggleFav(card); break;
     case 'apply': applyAllFromCard(card); break;
-    case 'copy': copyPromptToEditor(card); break;
+    case 'copy': copyPromptFromCard(card); break;
     case 'download': downloadFromCard(card, card.dataset.title); break;
     case 'i2i': sendToI2IFromGallery(card); break;
     case 'delete': deleteFromGallery(card); break;
@@ -2830,7 +2831,7 @@ function _addToGalleryInternal(thumbUrl, fullDataUrl, title, meta={}, dbId=null,
       <div class="card-tags">${_initTags.map(t=>`<span class="card-tag-badge">${escHtml(t)}</span>`).join('')}</div>
       <div class="card-actions">
         <div class="card-action-btn" data-gallery-action="apply" title="Apply model + LoRA + all settings">⚡</div>
-        <div class="card-action-btn" data-gallery-action="copy" title="Copy prompt to editor">✎</div>
+        <div class="card-action-btn" data-gallery-action="copy" title="Copy prompt">⎘</div>
         <div class="card-action-btn" data-gallery-action="i2i" title="Send to IMG→IMG">→</div>
         <div class="card-action-btn" data-gallery-action="download" title="Download">↓</div>
         <div class="card-action-btn" data-gallery-action="delete" title="Delete image and file in output folder">×</div>
@@ -3120,20 +3121,53 @@ function copyPrompt() {
   const p = tasks[activeTask]?.prompt || '';
   if (p) navigator.clipboard.writeText(p).then(() => { setStatus('PROMPT COPIED', 'ok'); setTimeout(() => setStatus('Void.gen'), 1500); });
 }
-function copyPromptToEditor(card) {
+function copyPromptFromCard(card) {
   let meta = {};
   try { meta = JSON.parse(card.dataset.metaJson || '{}'); } catch {}
-  const prompt = meta.prompt || '';
-  if (!prompt) return;
-  const ta = document.getElementById('te-prompt');
-  if (!ta) return;
-  ta.value = prompt;
-  if (tasks[activeTask]) tasks[activeTask].prompt = prompt;
-  updateTokenCount();
-  _autoResize(ta);
-  setStatus('PROMPT LOADED', 'ok');
-  setTimeout(() => setStatus('Void.gen'), 1500);
+  const prompt = (meta.prompt || '').trim();
+  if (!prompt) {
+    setStatus('NO PROMPT', 'warn');
+    setTimeout(() => setStatus('Void.gen'), 1500);
+    return;
+  }
+  const done = () => {
+    setStatus('PROMPT COPIED', 'ok');
+    setTimeout(() => setStatus('Void.gen'), 1500);
+  };
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(prompt).then(done).catch(() => {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = prompt;
+        ta.style.cssText = 'position:fixed;left:-9999px;top:0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        done();
+      } catch {
+        setStatus('COPY FAILED', 'error');
+        setTimeout(() => setStatus('Void.gen'), 1500);
+      }
+    });
+  } else {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = prompt;
+      ta.style.cssText = 'position:fixed;left:-9999px;top:0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+      done();
+    } catch {
+      setStatus('COPY FAILED', 'error');
+      setTimeout(() => setStatus('Void.gen'), 1500);
+    }
+  }
 }
+/** @deprecated use copyPromptFromCard — kept as alias */
+function copyPromptToEditor(card) { copyPromptFromCard(card); }
 function applyAllFromCard(card) {
   let meta = {};
   try { meta = JSON.parse(card.dataset.metaJson || '{}'); } catch {}
@@ -3592,7 +3626,9 @@ async function comfyuiGenerate(task) {
 // ── GENERATE LOOP ─────────────────────────────────────────────────
 function stopGenerate() {
   stopRequested = true;
-  fetch(`${COMFY_API}/interrupt`, {method:'POST'}).catch(()=>{});
+  if (window.VoidPixai) VoidPixai.stop();
+  if (!window.VoidPixai || !VoidPixai.isActive())
+    fetch(`${COMFY_API}/interrupt`, {method:'POST'}).catch(()=>{});
   setStatus('STOPPING…','warn');
   document.querySelectorAll('.center-tab')[1]?.classList.remove('generating');
   _syncMobileGenBtn(false);
@@ -3642,7 +3678,8 @@ async function startGenerate(allTasks = false, opts = {}) {
     queueStatuses[i] = 'running'; renderQueue();
     setStatus(`GENERATING ${i+1}/${tasks.length} · ${tasks[i].title}`);
     try {
-      const { dataUrls, files, seed, model } = await comfyuiGenerate(tasks[i]);
+      const _gen = (window.VoidPixai && VoidPixai.isActive()) ? VoidPixai.generate : comfyuiGenerate;
+      const { dataUrls, files, seed, model } = await _gen(tasks[i]);
       const elapsed = ((Date.now()-t0)/1000).toFixed(1)+'s';
       await Promise.all(dataUrls.map(async (dataUrl, j) => {
         const title = tasks[i].title + (dataUrls.length>1 ? ` #${j+1}` : '');
@@ -3653,7 +3690,8 @@ async function startGenerate(allTasks = false, opts = {}) {
           steps:document.getElementById('steps-num').value, cfg:document.getElementById('cfg-num').value,
           sampler:document.getElementById('sampler-select').value, time:elapsed,
           filename: imgFile?.filename || '', subfolder: imgFile?.subfolder || '', outputType: imgFile?.type || 'output',
-          loras:[0,1,2,3,4,5].map(k=>({ name:document.getElementById(`lora-sel-${k}`)?.value||'', strength:parseFloat(document.getElementById(`lora-sldr-${k}`)?.value||0.8) })).filter(l=>l.name) };
+          loras: (window.VoidPixai && VoidPixai.isActive()) ? VoidPixai.lorasMeta() :
+            [0,1,2,3,4,5].map(k=>({ name:document.getElementById(`lora-sel-${k}`)?.value||'', strength:parseFloat(document.getElementById(`lora-sldr-${k}`)?.value||0.8) })).filter(l=>l.name) };
         await saveAndAddToGallery(dataUrl, title, meta);
         showPreviewFinal(dataUrl, meta);
       }));

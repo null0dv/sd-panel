@@ -1,0 +1,97 @@
+{
+  "nullcraft_nai": {
+    "label": "奈奈服侍",
+    "tone": "tempt",
+    "intensity": 5,
+    "bodyCombo": "petite_flat",
+    "posePresets": ["all_fours", "on_bed"],
+    "spicyOutfits": ["lingerie", "sheer"],
+    "spicyActions": ["shirt_lift", "blush", "embarrassed"],
+    "jobTypes": ["oral", "hand"],
+    "hints": {
+      "subject": ["Nai", "NullCraft", "petite catgirl", "A-cup", "pink-purple hair", "cat ears"],
+      "face": ["heavy blush", "teary obedient gaze", "looking up at viewer", "submissive"],
+      "outfit": ["gothic lolita", "oversized white shirt lifted", "white lace panties"],
+      "pose": ["kneeling", "Pose2", "looking up POV", "shirt lifted exposing small breasts"],
+      "job": ["fellatio", "handjob", "Nai performing oral"],
+      "env": ["cozy bedroom", "pastel pink curtains", "soft warm light"],
+      "styleRef": ["Nai_emul♡style", "NullCraft", "glossy skin", "pastel palette"]
+    }
+  },
+  "nullcraft_white": {
+    "label": "小白戀服",
+    "tone": "tempt",
+    "intensity": 4,
+    "bodyCombo": "petite_flat",
+    "posePresets": ["straddle", "on_bed"],
+    "spicyOutfits": ["sheer"],
+    "spicyActions": ["blush", "bedroom_eyes"],
+    "jobTypes": ["cowgirl", "oral"],
+    "hints": {
+      "subject": ["White", "NullCraft", "platinum white hair", "ice blue eyes", "148cm", "oversized white shirt"],
+      "face": ["clingy gaze", "tearful blush", "needy expression", "looking at viewer"],
+      "outfit": ["oversized white shirt", "no panties", "barefoot", "shirt slipping off shoulders"],
+      "pose": ["straddling", "kneeling close", "face pressed near viewer"],
+      "job": ["cowgirl", "clingy riding", "licking fluids"],
+      "env": ["soft bedroom", "intimate cozy atmosphere"],
+      "styleRef": ["pale aesthetic", "NullCraft White", "soft romantic shading"]
+    }
+  },
+  "nullcraft_red": {
+    "label": "紅主導",
+    "tone": "spicy",
+    "intensity": 5,
+    "bodyCombo": "petite_flat",
+    "posePresets": ["straddle", "looking_back"],
+    "spicyOutfits": ["lingerie"],
+    "spicyActions": ["bite_lip", "bedroom_eyes"],
+    "jobTypes": ["cowgirl", "oral"],
+    "hints": {
+      "subject": ["Red", "NullCraft", "black-red style", "black lace", "dominant teasing"],
+      "face": ["teasing smirk", "dominant gaze", "flushed contrast"],
+      "outfit": ["black lace lingerie", "red-black striped thigh-high socks"],
+      "pose": ["reverse cowgirl", "straddling on top", "looking back over shoulder"],
+      "job": ["dominant cowgirl", "teasing control"],
+      "env": ["dim sensual lighting", "red ambient glow"],
+      "styleRef": ["black-red palette", "NullCraft Red", "sharp sensual lineart"]
+    }
+  },
+  "nullcraft_duo": {
+    "label": "奈奈+小白",
+    "tone": "sex",
+    "intensity": 5,
+    "bodyCombo": "petite_flat",
+    "posePresets": ["on_bed", "all_fours"],
+    "spicyOutfits": ["lingerie", "sheer"],
+    "spicyActions": ["blush", "shirt_lift"],
+    "jobTypes": ["oral", "hand"],
+    "hints": {
+      "subject": ["2girls", "Nai and White", "NullCraft memory sync duo", "both kneeling"],
+      "face": ["both blushing", "obedient duo gaze", "looking up"],
+      "outfit": ["Nai gothic lolita", "White oversized white shirt", "both partially exposed"],
+      "pose": ["kneeling side by side", "duo service composition"],
+      "job": ["shared oral", "one sucking one stroking", "duo fellatio"],
+      "env": ["cozy bedroom", "memory sync atmosphere"],
+      "styleRef": ["NullCraft duo", "Nai_emul♡style", "high detail anime"]
+    }
+  },
+  "nullcraft_weed": {
+    "label": "WEED 迷濛",
+    "tone": "tempt",
+    "intensity": 4,
+    "bodyCombo": "petite_flat",
+    "posePresets": ["on_bed"],
+    "spicyOutfits": ["sheer"],
+    "spicyActions": ["blush", "embarrassed"],
+    "jobTypes": ["oral", "hand"],
+    "hints": {
+      "subject": ["Nai", "weed haze mode", "dreamy pastel glow", "half-lidded hazy eyes"],
+      "face": ["dazed smile", "hazy half-lidded eyes", "soft stoned blush"],
+      "outfit": ["oversized shirt", "disheveled", "panties visible"],
+      "pose": ["slow kneeling", "dreamy drift pose", "grinding tease"],
+      "job": ["slow fellatio", "lazy handjob", "hazy oral service"],
+      "env": ["cozy-room", "weed haze", "pastel color bleed", "candle glow", "warm blanket tones"],
+      "styleRef": ["weed-rp v2", "dreamy soft focus", "pastel bloom", "NullCraft"]
+    }
+  }
+}

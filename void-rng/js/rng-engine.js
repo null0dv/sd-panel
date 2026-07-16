@@ -2740,6 +2740,12 @@ const CONTRAST_PRESETS = {
   },
 };
 
+/** 由 data/nullcraft-presets.json 灌入（nai-rp / white-rp / red-rp / weed-rp） */
+function mergeNullcraftPresets(presets) {
+  if (!presets || typeof presets !== 'object') return;
+  Object.assign(CONTRAST_PRESETS, presets);
+}
+
 const TONE_BOOST_LEVELS = {
   cute: {
     face:    ['soft gentle smile', 'kawaii expression, light blush', 'kawaii expression, sparkling eyes, adorable smile', 'kawaii expression, sparkling eyes, blushing cheeks, head tilt', 'maximum cute, kawaii, innocent charm, sparkling eyes, adorable smile, shy blush'],
@@ -4590,15 +4596,20 @@ function applyContrastPreset(id, opts = {}) {
   setCharTone(preset.tone || 'contrast');
   const intEl = document.getElementById('char-tone-intensity');
   if (intEl && preset.intensity) { intEl.value = preset.intensity; syncCharIntensity(); }
-  charJobTypes = new Set(['none']);
+  const jobInc = document.getElementById('char-inc-job');
+  if (preset.jobTypes?.length) {
+    charJobTypes = new Set(preset.jobTypes);
+    if (jobInc) jobInc.checked = true;
+  } else {
+    charJobTypes = new Set(['none']);
+    if (jobInc) jobInc.checked = false;
+    charSlots.job = '';
+  }
   if (preset.posePresets) charPosePresets = new Set(preset.posePresets);
   if (preset.spicyOutfits) charSpicyOutfits = new Set(preset.spicyOutfits);
   if (preset.spicyActions) charSpicyActions = new Set(preset.spicyActions);
   charMode = 'mix';
   setCharMode('mix');
-  const jobInc = document.getElementById('char-inc-job');
-  if (jobInc) jobInc.checked = false;
-  charSlots.job = '';
   if (preset.bodyCombo && BODY_COMBOS[preset.bodyCombo]) setBodyComboState(preset.bodyCombo);
   renderCharJobChips();
   renderCharPoseChips();
@@ -6332,6 +6343,39 @@ function collideOrganicCombo() {
   if (VoidPreference.collideOrganicCombo()) renderChar();
 }
 
+/** 由 data-loader / apply-latest-data 呼叫：把 char-banks + P 樣板灌進執行期辭庫 */
+function voidRngReloadCharLexicon(banks, templates) {
+  if (banks && typeof banks === 'object') {
+    Object.keys(banks).forEach((k) => {
+      if (Array.isArray(banks[k])) DEFAULT_CHAR_BANKS[k] = banks[k];
+    });
+    charBanks = loadCharBanks();
+  }
+  if (Array.isArray(templates) && templates.length) {
+    const existing = new Set(
+      DEFAULT_TEMPLATES.map((t) => `${t.subject || ''}|${t.outfit || ''}`)
+    );
+    templates.forEach((t) => {
+      if (!t || !t.subject) return;
+      const key = `${t.subject || ''}|${t.outfit || ''}`;
+      if (existing.has(key)) return;
+      DEFAULT_TEMPLATES.push({
+        subject: t.subject || '',
+        face: t.face || '',
+        details: t.details || '',
+        outfit: t.outfit || '',
+        pose: t.pose || '',
+        job: t.job || '',
+        env: t.env || '',
+        styleRef: t.styleRef || '',
+        quality: t.quality || '',
+      });
+      existing.add(key);
+    });
+    charTemplates = loadCharTemplates();
+  }
+}
+
 window.bootVoidRng = bootVoidRng;
 window.syncSearchChromeHeight = syncSearchChromeHeight;
 window.openRailDrawer = openRailDrawer;
@@ -6339,6 +6383,10 @@ window.closeRailDrawer = closeRailDrawer;
 window.toggleRailDrawer = toggleRailDrawer;
 window.jumpRailSection = jumpRailSection;
 window.syncRailSelectionBadges = syncRailSelectionBadges;
+window.voidRngReloadCharLexicon = voidRngReloadCharLexicon;
+window.mergeNullcraftPresets = mergeNullcraftPresets;
+window.DEFAULT_CHAR_BANKS = DEFAULT_CHAR_BANKS;
+window.DEFAULT_TEMPLATES = DEFAULT_TEMPLATES;
 (function exposeVoidRngApi() {
   const fns = [
     'switchPage', 'generateChar', 'generateAll', 'generateJewel', 'generateSpaceCards', 'toast',
@@ -6348,6 +6396,7 @@ window.syncRailSelectionBadges = syncRailSelectionBadges;
     'resetCharPosePresets', 'resetCharSpicyOutfits', 'resetCharSpicyActions', 'resetCharJobTypes', 'resetCharEnvPresets',
     'closeSessionPanel', 'openSessionPanel', 'closeLearnPanel', 'copyCharOutput',
     'copyStyleOutput', 'copyJewelOutput', 'copySpaceActiveCard', 'feedSpaceSlotsToBank',
+    'voidRngReloadCharLexicon', 'exportCharBanks', 'importCharBanks',
   ];
   fns.forEach((name) => {
     const fn = globalThis[name];

@@ -1484,7 +1484,7 @@ function _runGalleryCardAction(action, card) {
   switch (action) {
     case 'fav': toggleFav(card); break;
     case 'apply': applyAllFromCard(card); break;
-    case 'copy': copyPromptToEditor(card); break;
+    case 'copy': copyPromptFromCard(card); break;
     case 'download': downloadFromCard(card, card.dataset.title); break;
     case 'delete': deleteFromGallery(card); break;
   }
@@ -2670,7 +2670,7 @@ function _addToGalleryInternal(thumbUrl, fullDataUrl, title, meta={}, dbId=null,
       <div class="card-tags">${_initTags.map(t=>`<span class="card-tag-badge">${escHtml(t)}</span>`).join('')}</div>
       <div class="card-actions">
         <div class="card-action-btn" data-gallery-action="apply" title="Apply model + LoRA + all settings">⚡</div>
-        <div class="card-action-btn" data-gallery-action="copy" title="Copy prompt to editor">✎</div>
+        <div class="card-action-btn" data-gallery-action="copy" title="Copy prompt">⎘</div>
         <div class="card-action-btn" data-gallery-action="download" title="Download">↓</div>
         <div class="card-action-btn" data-gallery-action="delete" title="Delete image and file in output folder">×</div>
       </div>
@@ -2931,20 +2931,54 @@ function saveLastImg() { if (lastResult) downloadImg(lastResult.dataUrl, 'void-g
 function downloadImg(dataUrl, name) {
   const a = document.createElement('a'); a.href = dataUrl; a.download = (name||'void-gen')+'.png'; a.click();
 }
-function copyPromptToEditor(card) {
+function copyPromptFromCard(card) {
   let meta = {};
   try { meta = JSON.parse(card.dataset.metaJson || '{}'); } catch {}
-  const prompt = meta.prompt || '';
-  if (!prompt) return;
-  const ta = document.getElementById('te-prompt');
-  if (!ta) return;
-  ta.value = prompt;
-  if (tasks[activeTask]) tasks[activeTask].prompt = prompt;
-  updateTokenCount();
-  _autoResize(ta);
-  setStatus('PROMPT LOADED', 'ok');
-  setTimeout(() => setStatus('Void.gen'), 1500);
+  const prompt = (meta.prompt || '').trim();
+  if (!prompt) {
+    setStatus('NO PROMPT', 'warn');
+    setTimeout(() => setStatus('Void.gen'), 1500);
+    return;
+  }
+  const done = () => {
+    setStatus('PROMPT COPIED', 'ok');
+    setTimeout(() => setStatus('Void.gen'), 1500);
+  };
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(prompt).then(done).catch(() => {
+      // fallback for insecure context
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = prompt;
+        ta.style.cssText = 'position:fixed;left:-9999px;top:0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        done();
+      } catch {
+        setStatus('COPY FAILED', 'error');
+        setTimeout(() => setStatus('Void.gen'), 1500);
+      }
+    });
+  } else {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = prompt;
+      ta.style.cssText = 'position:fixed;left:-9999px;top:0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+      done();
+    } catch {
+      setStatus('COPY FAILED', 'error');
+      setTimeout(() => setStatus('Void.gen'), 1500);
+    }
+  }
 }
+/** @deprecated use copyPromptFromCard — kept as alias */
+function copyPromptToEditor(card) { copyPromptFromCard(card); }
 function applyAllFromCard(card) {
   let meta = {};
   try { meta = JSON.parse(card.dataset.metaJson || '{}'); } catch {}

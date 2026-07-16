@@ -24,6 +24,23 @@
       if (!res.ok) throw new Error('載入失敗: ' + file);
       payload[keyFromFile(file)] = await res.json();
     }));
+
+    // NullCraft RP skill 辭庫合併進 char-banks（去重）
+    const nc = payload['nullcraft-char-banks'];
+    if (nc && payload['char-banks']) {
+      const banks = payload['char-banks'];
+      Object.keys(nc).forEach((k) => {
+        if (k.startsWith('_') || !Array.isArray(nc[k])) return;
+        const existing = new Set(banks[k] || []);
+        nc[k].forEach((tag) => {
+          if (!existing.has(tag)) {
+            banks[k].push(tag);
+            existing.add(tag);
+          }
+        });
+      });
+    }
+
     return payload;
   }
 

@@ -50,7 +50,12 @@
     "正常美胸": ["medium breasts", "natural bust", "normal breasts", "balanced upper body"],
     "美胸": ["medium breasts", "natural bust", "normal breasts"],
     "大胸": ["large breasts", "big breasts"],
-    "巨乳": ["huge breasts", "massive breasts"]
+    "巨乳": ["huge breasts", "massive breasts"],
+    "奈奈": ["Nai", "NullCraft", "pink-purple hair", "golden-pink eyes", "catgirl"],
+    "小白": ["White", "NullCraft", "platinum white hair", "ice blue eyes", "oversized white shirt"],
+    "白醬": ["White", "NullCraft", "platinum white hair"],
+    "紅醬": ["Red", "NullCraft", "black-red style", "black lace"],
+    "NullCraft": ["Nai", "White", "Red", "NullCraft", "memory sync"]
   },
   "details": {
     "細腰": ["slim waist", "narrow waist", "cinched waist"],

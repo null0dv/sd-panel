@@ -38,6 +38,7 @@ function isPanelHtml(url) {
 self.addEventListener("fetch", e => {
   const url = e.request.url;
   if (url.includes("127.0.0.1:8188") || url.includes("localhost:8188")) return;
+  if (url.includes("127.0.0.1:8899") || url.includes("localhost:8899")) return;
   if (e.request.method !== "GET") return;
 
   // HTML: network-first so desktop shortcut always picks up panel updates

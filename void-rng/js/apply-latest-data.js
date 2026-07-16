@@ -18,7 +18,13 @@
 
     if (payload['char-sections']) replaceArray(global.CHAR_SECTIONS, payload['char-sections']);
 
-    if (payload['char-banks']) {
+    // 角色辭庫 + P 對話窗樣板（需 voidRngReloadCharLexicon 才能寫入腳本作用域內的 charBanks）
+    if (typeof global.voidRngReloadCharLexicon === 'function') {
+      global.voidRngReloadCharLexicon(
+        payload['char-banks'] || null,
+        payload['p-prompt-templates'] || null
+      );
+    } else if (payload['char-banks']) {
       const banks = payload['char-banks'];
       Object.keys(banks).forEach((k) => {
         if (global.DEFAULT_CHAR_BANKS) global.DEFAULT_CHAR_BANKS[k] = banks[k];
@@ -75,6 +81,10 @@
     }
     if (typeof global.buildClassifyTagIndex === 'function') {
       global.CLASSIFY_TAG_INDEX = global.buildClassifyTagIndex(payload['char-tag-library']);
+    }
+
+    if (payload['nullcraft-presets'] && typeof global.mergeNullcraftPresets === 'function') {
+      global.mergeNullcraftPresets(payload['nullcraft-presets']);
     }
   };
 })(window);
