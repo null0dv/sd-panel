@@ -2034,18 +2034,21 @@ const TONE_MARKERS = {
 const JOB_TYPES = [
   { id:'none', label:'無' },
   { id:'all', label:'全部' },
-  { id:'breasts', label:'乳交' },
-  { id:'hand', label:'手交' },
   { id:'oral', label:'口交' },
-  { id:'feet', label:'足交' },
+  { id:'hand', label:'手交' },
+  { id:'panty', label:'內褲夾' },
   { id:'cameltoe', label:'外陰夾' },
+  { id:'breasts', label:'乳交' },
+  { id:'feet', label:'足交' },
   { id:'cowgirl', label:'騎乘' },
   { id:'doggy', label:'後入' },
   { id:'missionary', label:'傳教式' },
 ];
 
 const JOB_PRESET_GROUPS = [
-  { label:'', ids:['none','all','breasts','hand','oral','feet','cameltoe','cowgirl','doggy','missionary'] },
+  { label:'服務', ids:['none','all','oral','hand','panty','cameltoe'] },
+  { label:'胸部・足', ids:['breasts','feet'] },
+  { label:'體位', ids:['cowgirl','doggy','missionary'] },
 ];
 
 /** JOB 可多選；僅「無」與其他類型在切換時互斥（見 toggleCharJobType） */
@@ -2302,6 +2305,8 @@ const SPICY_ACTION_TYPES = [
   { id:'finger_heart', label:'手指愛心' },
   { id:'skirt_lift', label:'撩裙' },
   { id:'shirt_lift', label:'撩衣' },
+  { id:'off_shoulder', label:'露肩' },
+  { id:'unbutton', label:'解扣' },
   { id:'on_bed', label:'床上' },
   { id:'shower', label:'淋浴' },
   { id:'all_fours', label:'四肢著地' },
@@ -2309,17 +2314,21 @@ const SPICY_ACTION_TYPES = [
   { id:'straddle', label:'跨坐' },
   { id:'wet_hair', label:'濕髮' },
   { id:'cleavage', label:'乳溝' },
+  { id:'midriff', label:'露腰' },
   { id:'thigh_focus', label:'大腿' },
   { id:'looking_back', label:'回眸' },
   { id:'panty_peek', label:'裙底暗示' },
   { id:'mirror_gaze', label:'鏡中眼神' },
   { id:'kneeling_cute', label:'跪姿可愛' },
+  { id:'oral_ready', label:'口交準備' },
+  { id:'hand_focus', label:'手部焦點' },
 ];
 
 const SPICY_ACTION_GROUPS = [
   { label:'', ids:['all','none'] },
   { label:'表情', ids:['seductive_smile','blush','bedroom_eyes','bite_lip','embarrassed','peace_sign','finger_heart'] },
-  { label:'肢體', ids:['skirt_lift','shirt_lift','on_bed','shower','all_fours','cover_chest','straddle','wet_hair','kneeling_cute','cleavage','thigh_focus','looking_back','panty_peek','mirror_gaze'] },
+  { label:'裸露・服裝', ids:['skirt_lift','shirt_lift','off_shoulder','unbutton','midriff','cleavage','panty_peek','cover_chest'] },
+  { label:'姿勢', ids:['on_bed','shower','all_fours','straddle','wet_hair','thigh_focus','looking_back','kneeling_cute','mirror_gaze','oral_ready','hand_focus'] },
 ];
 
 /** 瑟瑟動作可多選混搭 */
@@ -2346,18 +2355,23 @@ const SPICY_ACTION_FACE_MARKERS = {
 const SPICY_ACTION_POSE_MARKERS = {
   skirt_lift:   ['skirt lift','lifting skirt','skirt hem','panty peek','upskirt'],
   shirt_lift:   ['shirt lift','lifting shirt','lifting hem','exposed midriff'],
+  off_shoulder: ['off-shoulder','bare shoulders','slipping neckline','one shoulder bare'],
+  unbutton:     ['unbutton','unbuttoned','buttons undone','open blouse','open collar'],
   on_bed:       ['on bed','lying on bed','bed sheets','pillow'],
   shower:       ['shower','wet skin','steamy bathroom'],
   all_fours:    ['all fours','on all fours'],
   cover_chest:  ['covering breasts','arm across chest','hands covering'],
-  straddle:     ['straddling','straddle chair'],
+  straddle:     ['straddling','straddle chair','straddling lap'],
   wet_hair:     ['wet hair','dripping wet hair'],
   cleavage:     ['cleavage','neckline','deep v','collarbone'],
+  midriff:      ['midriff','navel','bare midriff','crop hem','exposed stomach'],
   thigh_focus:  ['thigh focus','thighs','thick thighs','inner thighs'],
   looking_back: ['looking back','over shoulder','back glance'],
   panty_peek:   ['pantyshot','panty peek','upskirt tease'],
   mirror_gaze:  ['mirror gaze','looking at reflection','mirror eye contact'],
   kneeling_cute:['kneeling','cute kneeling','on knees'],
+  oral_ready:   ['kneeling oral','looking up','mouth open','oral pose','face close'],
+  hand_focus:   ['hands in frame','handjob pose','hands detailed','hands on lap'],
 };
 
 const ENV_PRESET_TYPES = [
@@ -2442,7 +2456,7 @@ const BODY_FIGURE_LEG_GROUPS = [
 ];
 
 const BODY_FRAME_MARKERS = {
-  petite:   ['petite', 'petite body', 'petite figure', 'small frame', 'delicate proportions', '嬌小', '嬌小體型', '小隻'],
+  petite:   ['petite', 'petite body', 'petite figure', 'petite adult', 'small frame', 'loli-style', 'loli body', 'tiny frame', 'delicate proportions', '嬌小', '嬌小體型', '小隻', '蘿莉'],
   slim:     ['slim figure', 'slim body', 'slender', 'slim build', 'slim frame', '纖細', '苗條', '纖細身材', '瘦'],
   average:  ['average build', 'balanced proportions', 'natural feminine', 'approachable beauty', '標準'],
   tall:     ['tall', 'tall frame', 'tall slender', 'model proportions', 'long-legged', 'long legs', '高挑', '長身'],
@@ -2468,12 +2482,15 @@ const BODY_FIGURE_MARKERS = {
 };
 
 const BODY_COMBOS = {
+  loli_max:     { label:'蘿莉最優', frame:['petite'], breast:['flat','small'], figure:['girlish','slim_waist'] },
+  loli_petite_slim: { label:'蘿莉纖細', frame:['petite','slim'], breast:['flat'], figure:['girlish','slim_waist','long_legs'] },
+  loli_thick_thigh: { label:'蘿莉肉腿', frame:['petite'], breast:['small','flat'], figure:['girlish','thick_thighs','slim_waist'] },
   petite_cute:  { label:'嬌小可愛', frame:['petite','slim'], breast:['small'], figure:['slim_waist','girlish'] },
+  petite_flat:  { label:'清純貧乳', frame:['petite','slim'], breast:['flat','small'], figure:['girlish','slim_waist'] },
   model_slim:   { label:'纖細長腿', frame:['slim','tall'], breast:['medium'], figure:['long_legs','slim_waist'] },
   curvy_sexy:   { label:'豐滿色氣', frame:['curvy'], breast:['large'], figure:['wide_hips','hourglass'] },
   athletic_fit: { label:'運動健美', frame:['athletic','slim'], breast:['medium'], figure:['slim_waist','long_legs'] },
   plush_soft:   { label:'肉感豐腴', frame:['curvy'], breast:['large'], figure:['thick_thighs','wide_hips'] },
-  petite_flat:  { label:'清純貧乳', frame:['petite','slim'], breast:['flat','small'], figure:['girlish','slim_waist'] },
   tall_slim_flat: { label:'高挑纖細貧乳', frame:['slim','tall'], breast:['flat'], figure:['long_legs','slim_waist'] },
   tall_slim_small:{ label:'高挑纖細小乳', frame:['slim','tall'], breast:['small'], figure:['long_legs','slim_waist'] },
   tall_leggy_onee:{ label:'長腿姊姊', frame:['tall','slim'], breast:['medium','large'], figure:['long_legs','slim_waist'] },
@@ -2484,20 +2501,25 @@ const BODY_COMBOS = {
   mature_onee:  { label:'御姐高挑', frame:['tall','curvy'], breast:['large'], figure:['long_legs','hourglass','slim_waist'] },
 };
 
+/** 蘿莉／嬌小優先顯示與預設 */
 const BODY_COMBO_UI_ORDER = [
-  'petite_cute', 'petite_flat', 'tall_slim_flat', 'tall_slim_small',
+  'loli_max', 'loli_petite_slim', 'loli_thick_thigh',
+  'petite_cute', 'petite_flat',
+  'tall_slim_flat', 'tall_slim_small',
   'tall_leggy_onee', 'tall_leggy_flat', 'tall_leggy_small',
   'model_slim', 'tall_thick_legs', 'mature_onee',
   'athletic_fit', 'curvy_sexy', 'busty_nsfw', 'plush_soft',
 ];
 
 const PRESET_BODY_MAP = {
-  pure_selfie: 'petite_cute',
-  spicy_selfie: 'model_slim',
-  super_spicy: 'model_slim',
-  full_nsfw: 'busty_nsfw',
-  sex_lover: 'busty_nsfw',
+  pure_selfie: 'loli_max',
+  spicy_selfie: 'loli_petite_slim',
+  super_spicy: 'loli_max',
+  full_nsfw: 'loli_thick_thigh',
+  sex_lover: 'loli_max',
 };
+
+const LOLI_PRIORITY_COMBOS = new Set(['loli_max', 'loli_petite_slim', 'loli_thick_thigh', 'petite_cute', 'petite_flat']);
 
 /** 體型・胸部・身形可自由複選混搭 */
 const BODY_SOFT_CONFLICTS = [];
@@ -2512,7 +2534,7 @@ const POSE_PRESET_LEGACY_MAP = {
   selfie_hot:'tempt_high_collar', high_selfie:'tempt_high_collar', low_tempt:'tempt_low_upskirt',
   cover_chest:'tempt_high_collar', skirt_pull:'tempt_jump_skirt', full_body:'cute_outfit_normal',
 };
-const JOB_TYPE_LEGACY_MAP = { panties:'cameltoe', panty:'cameltoe', grind:'hand' };
+const JOB_TYPE_LEGACY_MAP = { panties:'panty', grind:'hand' };
 
 function migratePosePresets(ids) {
   const valid = new Set(POSE_PRESETS.map(p => p.id));
@@ -2572,9 +2594,10 @@ const POSE_SELFIE_CONFLICT_MARKERS = [
 ];
 
 const POSE_JOB_AFFINITY = {
-  oral:     ['kneeling', 'looking up', 'close-up face', 'on bed', 'submissive', 'inviting angle', 'face between', 'lying on', 'portrait', 'upward gaze', 'bedroom pov'],
+  oral:     ['kneeling', 'looking up', 'close-up face', 'on bed', 'submissive', 'inviting angle', 'face between', 'lying on', 'portrait', 'upward gaze', 'bedroom pov', 'oral pose', 'mouth open', 'on knees'],
   breasts:  ['leaning forward', 'presenting chest', 'chest forward', 'arched back', 'deep neckline', 'cleavage', 'bent forward', 'pressing', 'leaning toward', 'upper body'],
-  hand:     ['close-up', 'hands in frame', 'sitting', 'lying on bed', 'intimate', 'lap', 'hands visible', 'hand on'],
+  hand:     ['close-up', 'hands in frame', 'sitting', 'lying on bed', 'intimate', 'lap', 'hands visible', 'hand on', 'handjob pose', 'hands detailed'],
+  panty:    ['straddling', 'grinding', 'skirt lift', 'skirt lifted', 'lap', 'hips', 'from behind', 'panty', 'crotch focus', 'low angle', 'sitting'],
   feet:     ['sitting', 'legs angled', 'soles', 'foot', 'lying on back', 'kneeling', 'thighs', 'legs extended', 'feet up'],
   cameltoe: ['low angle', 'thighs', 'sitting', 'squatting', 'crotch', 'from below', 'panty', 'inner thighs', 'worm eye', 'legs apart'],
   cowgirl:  ['riding', 'straddling', 'on top', 'cowgirl', 'hips', 'bouncing', 'lap'],
@@ -2607,43 +2630,47 @@ const POSE_PRESET_MARKERS = {
 };
 
 const JOB_TYPE_MARKERS = {
-  breasts:  ['paizuri','titjob','breast squeeze','breasts pressed','breasts covering','breast play','nipple stimulation','between breasts','grabbing own breasts','presenting chest','penis between breasts'],
-  hand:     ['handjob','stroking penis','fingering','fingers inside','two-handed','mutual hand','hand guiding','hand inside','hand stimulation','hand on penis'],
-  oral:     ['fellatio','blowjob','oral sex','deepthroat','cunnilingus','licking penis','licking pussy','licking nipple','sucking finger','saliva trail','drool','tongue on','penis in mouth','face between legs'],
-  feet:     ['footjob','foot job','stocking footjob','feet on penis','foot pressing','double footjob','soles rubbing','toes stroking','barefoot footjob','oily soles'],
-  cameltoe: ['pussyjob','pussy job','labia','labia grip','labia clamp','vulva','vulva squeeze','pussy lips','penis between labia','cock between labia','genital rub','external stimulation','outercourse','grinding on penis','rubbing on penis','crotch job','through panties','panties on','wet panties','panties aside','no penetration','labia sandwich'],
-  cowgirl:  ['cowgirl','girl on top','riding','straddling sex','bouncing on','riding penis','woman on top'],
-  doggy:    ['doggy style','doggystyle','from behind sex','all fours sex','rear entry','on all fours penetration'],
-  missionary:['missionary','missionary position','lying on back sex','legs spread sex','face to face sex'],
+  breasts:  ['paizuri','titjob','breast squeeze','breasts pressed','breasts covering','breast play','nipple stimulation','between breasts','grabbing own breasts','presenting chest','penis between breasts','flat chest paizuri','small breasts titjob'],
+  hand:     ['handjob','stroking penis','fingering','fingers inside','two-handed','mutual hand','hand guiding','hand inside','hand stimulation','hand on penis','petite adult handjob','small hands stroking'],
+  oral:     ['fellatio','blowjob','oral sex','deepthroat','cunnilingus','licking penis','licking pussy','licking nipple','sucking finger','saliva trail','drool','tongue on','penis in mouth','face between legs','sloppy blowjob','oral teasing'],
+  panty:    ['pantyjob','panty job','through panties','panties on','wet panties','grinding against panties','penis under panties','fabric friction','clothed outercourse','panty crotch','cotton panties','side-tie panties pantyjob','skirt lifted pantyjob'],
+  cameltoe: ['pussyjob','pussy job','labia','labia grip','labia clamp','vulva','vulva squeeze','pussy lips','penis between labia','cock between labia','genital rub','external stimulation','outercourse','labia sandwich','panties aside pussyjob'],
+  feet:     ['footjob','foot job','stocking footjob','feet on penis','foot pressing','double footjob','soles rubbing','toes stroking','barefoot footjob','oily soles','petite footjob'],
+  cowgirl:  ['cowgirl','girl on top','riding','straddling sex','bouncing on','riding penis','woman on top','reverse cowgirl'],
+  doggy:    ['doggy style','doggystyle','from behind sex','all fours sex','rear entry','on all fours penetration','prone bone'],
+  missionary:['missionary','missionary position','lying on back sex','legs spread sex','face to face sex','mating press'],
 };
 
 const JOB_TYPE_FALLBACK = {
-  breasts:  'paizuri, titjob, penis between breasts, breasts pressed together, breast squeeze, looking at viewer',
-  hand:     'handjob, stroking penis with hand, precum on fingers, two-handed stroke, looking at viewer',
-  oral:     'fellatio, blowjob, oral sex, licking penis tip, saliva trail, looking at viewer',
-  feet:     'footjob, feet on penis, soles rubbing shaft, toes stroking, looking at viewer',
-  cameltoe: 'pussyjob, labia gripping penis shaft, grinding through panties, outercourse, no penetration, looking at viewer',
-  cowgirl:  'cowgirl position, girl on top, riding, straddling, bouncing, looking at viewer',
-  doggy:    'doggy style, from behind, on all fours, rear entry, arched back, looking back at viewer',
-  missionary:'missionary position, lying on back, legs spread, face to face, intimate POV, looking at viewer',
+  breasts:  'paizuri, titjob, penis between breasts, breasts pressed together, breast squeeze, looking at viewer, 1boy',
+  hand:     'handjob, stroking penis with small hands, precum on fingers, two-handed stroke, petite adult, looking at viewer, 1boy',
+  oral:     'fellatio, blowjob, oral sex, licking penis tip, saliva trail, looking up, petite face, 1boy',
+  panty:    'pantyjob, grinding penis against wet panties, fabric friction, clothed outercourse, no penetration, looking at viewer, 1boy',
+  cameltoe: 'pussyjob, labia gripping penis shaft, grinding through panties, outercourse, no penetration, looking at viewer, 1boy',
+  feet:     'footjob, petite soles on penis, toes stroking shaft, looking at viewer, 1boy',
+  cowgirl:  'cowgirl position, girl on top, riding, straddling, bouncing, looking at viewer, 1boy',
+  doggy:    'doggy style, from behind, on all fours, rear entry, arched back, looking back at viewer, 1boy',
+  missionary:'missionary position, lying on back, legs spread, face to face, intimate POV, looking at viewer, 1boy',
 };
 
 const JOB_POSE_FALLBACK = {
-  oral:     'kneeling on bed, looking up at viewer, close-up face, submissive inviting angle, on bed POV',
-  hand:     'sitting, hands in frame, close-up, intimate lap pose, hands visible, looking at viewer',
-  breasts:  'leaning forward, presenting chest, cleavage focus, arched back, bent forward emphasis',
-  feet:     'sitting, legs extended, soles visible, feet in frame, lying on back, thighs angled to camera',
-  cameltoe: 'low angle, thighs visible, sitting, squatting, crotch emphasis, from below, inner thighs',
+  oral:     'kneeling, looking up at viewer, close-up face, mouth level, submissive oral service pose, on knees POV',
+  hand:     'sitting, hands in frame, intimate lap pose, hands detailed, looking at viewer',
+  panty:    'straddling lap, hips grinding, skirt lifted, panty crotch focus, looking at viewer',
+  breasts:  'leaning forward, presenting chest, cleavage or flat press focus, arched back',
+  feet:     'sitting, legs extended, soles visible, feet in frame, thighs angled to camera',
+  cameltoe: 'low angle, thighs visible, sitting or squatting, crotch emphasis, from below, inner thighs',
   cowgirl:  'cowgirl on bed, riding pose, straddling, hips emphasis, looking at viewer',
   doggy:    'on all fours, doggy style pose, from behind, arched back, looking back',
   missionary:'lying on back, missionary pose, legs apart, intimate angle, looking at viewer',
 };
 
 const JOB_POSE_EXCLUDE = {
-  oral:     ['handjob', 'footjob', 'paizuri', 'titjob', 'pussyjob', 'labia grip'],
-  hand:     ['fellatio', 'blowjob', 'deepthroat', 'footjob', 'paizuri', 'titjob', 'cunnilingus'],
-  feet:     ['handjob', 'fellatio', 'blowjob', 'paizuri', 'titjob', 'pussyjob', 'fingering'],
-  breasts:  ['handjob', 'footjob', 'fellatio', 'blowjob', 'pussyjob', 'deepthroat'],
+  oral:     ['handjob', 'footjob', 'paizuri', 'titjob', 'pussyjob', 'pantyjob', 'labia grip'],
+  hand:     ['fellatio', 'blowjob', 'deepthroat', 'footjob', 'paizuri', 'titjob', 'cunnilingus', 'pantyjob'],
+  panty:    ['fellatio', 'blowjob', 'deepthroat', 'handjob only', 'footjob', 'paizuri', 'titjob', 'deep penetration'],
+  feet:     ['handjob', 'fellatio', 'blowjob', 'paizuri', 'titjob', 'pussyjob', 'pantyjob', 'fingering'],
+  breasts:  ['handjob', 'footjob', 'fellatio', 'blowjob', 'pussyjob', 'pantyjob', 'deepthroat'],
   cameltoe: ['handjob', 'footjob', 'fellatio', 'blowjob', 'paizuri', 'titjob'],
   cowgirl:  ['doggy style', 'doggystyle', 'missionary', 'fellatio', 'footjob', 'handjob only'],
   doggy:    ['cowgirl', 'missionary position', 'fellatio', 'paizuri', 'footjob'],
@@ -2652,8 +2679,9 @@ const JOB_POSE_EXCLUDE = {
 
 const JOB_TONE_BOOST = {
   tempt: {
-    oral:     'glossy lips, teasing oral implication, inviting upward gaze',
-    hand:     'finger in mouth tease, hand on thigh, intimate hand focus',
+    oral:     'glossy lips, teasing oral implication, inviting upward gaze, petite face',
+    hand:     'finger in mouth tease, small hands, intimate hand focus',
+    panty:    'panties on, fabric friction tease, skirt lift hint, wet fabric',
     breasts:  'breast press tease, inviting paizuri hint, leaning forward',
     feet:     'foot tease on lap, legs angled, sole peek',
     cameltoe: 'panties on, labia rub tease hint, thigh squeeze',
@@ -2662,8 +2690,9 @@ const JOB_TONE_BOOST = {
     missionary:'lying on bed tease, intimate face to face hint',
   },
   sex: {
-    oral:     'messy oral sex, saliva trail, drool, intense fellatio',
-    hand:     'two-handed handjob, precum drip, stroking penis',
+    oral:     'messy oral sex, saliva trail, drool, intense fellatio, looking up',
+    hand:     'two-handed handjob, precum drip, stroking penis, petite grip',
+    panty:    'pantyjob, wet panties grinding on penis, fabric stretched, outercourse',
     breasts:  'paizuri, titjob, penis between breasts, breast squeeze',
     feet:     'footjob, soles on penis, oily soles, toe curl',
     cameltoe: 'pussyjob through panties, labia gripping penis, outercourse friction',
@@ -2672,6 +2701,38 @@ const JOB_TONE_BOOST = {
     missionary:'missionary, deep penetration, legs wrapped, intimate face to face',
   },
 };
+
+/** 正常服裝 + 色氣裸露層（可疊在校服／帽T／毛衣等之上） */
+const OUTFIT_SPICE_LAYERS = {
+  off_shoulder: ['off-shoulder neckline', 'bare shoulders', 'collarbone exposed', 'slipping straps'],
+  unbuttoned:   ['unbuttoned blouse', 'open collar', 'buttons undone', 'cleavage peek'],
+  midriff:      ['bare midriff', 'navel exposed', 'crop hem', 'stomach peek'],
+  sheer_hint:   ['slightly sheer fabric', 'see-through hint', 'fabric cling'],
+  no_bra:       ['no bra', 'braless', 'nipple outline under fabric'],
+  panty_show:   ['panties visible', 'panty peek under skirt', 'white panties flash'],
+  skirt_short:  ['micro skirt hem', 'short hemline', 'thigh exposure'],
+  side_slit:    ['high side slit', 'thigh flash', 'leg exposure'],
+  pulled:       ['clothes pulled aside', 'fabric shifted', 'disheveled clothing'],
+  wet_cling:    ['wet fabric clinging', 'transparent when wet hint'],
+};
+
+const OUTFIT_SPICE_BY_ACTION = {
+  off_shoulder: ['off_shoulder'],
+  unbutton:     ['unbuttoned', 'no_bra'],
+  shirt_lift:   ['midriff', 'no_bra'],
+  skirt_lift:   ['panty_show', 'skirt_short'],
+  midriff:      ['midriff'],
+  cleavage:     ['unbuttoned', 'no_bra'],
+  panty_peek:   ['panty_show', 'skirt_short'],
+  wet_hair:     ['wet_cling', 'sheer_hint'],
+};
+
+/** 判定「正常／日常服裝」基底，適合疊色氣標籤 */
+const NORMAL_OUTFIT_MARKERS = [
+  'school uniform', 'sailor', 'serafuku', 'hoodie', 'sweater', 'cardigan', 'blouse',
+  'office', 'pencil skirt', 'polo', 'yukata', 'kimono', 'parka', 'daily wear',
+  'casual', 'sundress', 'frilly dress', 'tennis', 'blazer', '校服', '制服',
+];
 
 const TONE_LABELS = {
   balance: '均衡', cute: '可愛', spicy: '色氣', tempt: '誘惑', sex: 'SEX',
@@ -2695,14 +2756,16 @@ const CONTRAST_PRESETS = {
     label: '天真內褲',
     tone: 'contrast',
     intensity: 4,
-    bodyCombo: 'petite_cute',
+    bodyCombo: 'loli_max',
     posePresets: ['tempt_low_upskirt', 'cute_outfit_normal'],
     spicyOutfits: ['none'],
-    spicyActions: ['panty_peek', 'skirt_lift'],
+    spicyActions: ['panty_peek', 'skirt_lift', 'embarrassed'],
+    jobTypes: ['panty'],
     hints: {
       face: ['innocent smile', 'dazed expression', 'blank cute stare', 'shy blush', 'head tilt'],
-      outfit: ['school uniform', 'pleated skirt', 'white panties', 'modest cute outfit'],
+      outfit: ['school uniform', 'pleated skirt', 'white panties', 'off-shoulder slip', 'modest cute outfit lewd'],
       pose: ['low angle selfie', 'panty peek', 'skirt lift', 'embarrassed blush', 'innocent tease'],
+      job: ['pantyjob', 'grinding through panties', 'wet fabric', '1boy'],
       env: ['soft daylight', 'classroom', 'cozy bedroom'],
       styleRef: ['kawaii anime style', 'soft pastel palette', 'fan-service composition'],
     },
@@ -2711,13 +2774,13 @@ const CONTRAST_PRESETS = {
     label: '呆呆色氣',
     tone: 'contrast',
     intensity: 4,
-    bodyCombo: 'petite_flat',
+    bodyCombo: 'loli_petite_slim',
     posePresets: ['tempt_jump_skirt', 'overhead_selfie'],
-    spicyOutfits: ['lingerie'],
-    spicyActions: ['panty_peek', 'bite_lip'],
+    spicyOutfits: ['none'],
+    spicyActions: ['panty_peek', 'bite_lip', 'off_shoulder', 'shirt_lift'],
     hints: {
       face: ['dazed expression', 'empty cute stare', 'drooling slightly', 'innocent ahegao-lite', 'flustered blush'],
-      outfit: ['oversized hoodie', 'frilly panties peek', 'lace trim underwear hint', 'innocent disheveled'],
+      outfit: ['oversized hoodie', 'frilly panties peek', 'bare midriff', 'off-shoulder', 'innocent disheveled'],
       pose: ['jumping pose', 'skirt flying', 'panty peek', 'high angle selfie', 'awkward cute pose'],
       env: ['pastel room', 'messy cute bedroom'],
       styleRef: ['moe aesthetic', 'eroge CG quality hints', 'alluring innocent contrast'],
@@ -2727,12 +2790,13 @@ const CONTRAST_PRESETS = {
     label: '清純反差',
     tone: 'contrast',
     intensity: 3,
+    bodyCombo: 'loli_max',
     posePresets: ['cute_outfit_underwear', 'tempt_high_collar'],
-    spicyOutfits: ['sheer'],
-    spicyActions: ['cleavage', 'shirt_lift'],
+    spicyOutfits: ['none'],
+    spicyActions: ['cleavage', 'shirt_lift', 'unbutton', 'off_shoulder'],
     hints: {
       face: ['peace sign', 'adorable smile', 'innocent gaze', 'kawaii blush'],
-      outfit: ['lace lingerie under school uniform', 'see-through blouse', 'innocent yet revealing'],
+      outfit: ['school uniform', 'see-through blouse', 'off-shoulder', 'unbuttoned', 'innocent yet revealing'],
       pose: ['selfie', 'collarbone peek', 'skirt hem lift', 'teasing hesitation'],
       env: ['soft rim light', 'intimate soft lighting'],
       styleRef: ['pixiv trending illustration', 'delicate linework'],
@@ -3833,6 +3897,88 @@ function pickOutfitFromSelection(bank) {
   return pickWeightedScoredEntries(scored);
 }
 
+function isNormalClothesBase(text) {
+  return textHasAnyMarker(text, NORMAL_OUTFIT_MARKERS);
+}
+
+function getDesiredSpiceLayerIds() {
+  const ids = new Set();
+  [...(charSpicyActions || [])].forEach(a => {
+    (OUTFIT_SPICE_BY_ACTION[a] || []).forEach(id => ids.add(id));
+  });
+  const tone = charTone === 'contrast' ? 'tempt' : charTone;
+  if (['spicy', 'tempt', 'sex'].includes(tone) && charToneIntensity >= 3) {
+    ids.add('off_shoulder');
+    if (charToneIntensity >= 4) {
+      ids.add('unbuttoned');
+      ids.add('panty_show');
+    }
+    if (Math.random() < 0.55) ids.add('midriff');
+    if (Math.random() < 0.45) ids.add('no_bra');
+    if (tone === 'sex' && charToneIntensity >= 4) ids.add('pulled');
+  }
+  if (charJobTypes.has('panty') || charJobTypes.has('cameltoe')) {
+    ids.add('panty_show');
+    ids.add('skirt_short');
+  }
+  if (charJobTypes.has('oral') || charJobTypes.has('hand')) {
+    if (Math.random() < 0.4) ids.add('unbuttoned');
+  }
+  return [...ids];
+}
+
+function applyOutfitSpiceLayers(text) {
+  if (!text) return text;
+  const layerIds = getDesiredSpiceLayerIds();
+  if (!layerIds.length) return text;
+  const fromActions = [...(charSpicyActions || [])].some(a => a !== 'none' && a !== 'all' && OUTFIT_SPICE_BY_ACTION[a]);
+  const spicyTone = ['spicy', 'tempt', 'sex', 'contrast'].includes(charTone) && charToneIntensity >= 3;
+  if (!fromActions && !spicyTone && !charJobTypes.has('panty') && !charJobTypes.has('cameltoe')) {
+    return text;
+  }
+  // 正常服裝優先疊層；色氣動作強制疊層
+  if (!fromActions && !isNormalClothesBase(text) && Math.random() < 0.35) return text;
+
+  const t = text.toLowerCase();
+  const maxN = Math.min(3, Math.max(1, Math.floor(charToneIntensity / 2) + (fromActions ? 1 : 0)));
+  const pool = layerIds.slice().sort(() => Math.random() - 0.5).slice(0, maxN);
+  const add = [];
+  pool.forEach(id => {
+    const opts = OUTFIT_SPICE_LAYERS[id];
+    if (!opts?.length) return;
+    const tag = opts[Math.floor(Math.random() * opts.length)];
+    const key = tag.toLowerCase().slice(0, 10);
+    if (tag && !t.includes(key) && !add.some(a => a.toLowerCase().includes(key))) add.push(tag);
+  });
+  return add.length ? `${text}, ${add.join(', ')}` : text;
+}
+
+function applyPetiteLoliBias(key, text) {
+  if (!text || !['subject', 'details', 'outfit'].includes(key)) return text;
+  const frame = getActiveBodyIds(charBodyFrame);
+  const wantsPetite = frame.includes('petite')
+    || (!isBodyFilterActive() && ['spicy', 'tempt', 'sex', 'contrast', 'cute'].includes(charTone));
+  if (!wantsPetite) return text;
+  if (/petite|small frame|loli-style|loli body|flat chest|girlish/i.test(text)) {
+    // 有體態篩選且含 petite 時再補強一次小特徵
+    if (frame.includes('petite') && key === 'subject' && !/petite adult|small frame/i.test(text)) {
+      return `${text}, petite adult body, small frame`;
+    }
+    return text;
+  }
+  if (key === 'subject') {
+    return `${text}, petite adult woman, loli-style body proportions, small frame, girlish charm`;
+  }
+  if (key === 'details') {
+    return `${text}, petite body, slim waist, delicate proportions`;
+  }
+  // outfit：只在嬌小篩選時加 fit 提示
+  if (frame.includes('petite')) {
+    return `${text}, petite-friendly fit, slim small frame`;
+  }
+  return text;
+}
+
 function rollOutfitSection() {
   const active = getActiveSpicyOutfitIds();
   let bank = getCharBankFiltered('outfit');
@@ -3843,6 +3989,8 @@ function rollOutfitSection() {
     base = pickOutfitFromSelection(bank);
     if (!base) base = buildOutfitFallbackFromSelection(active);
     base = ensureOutfitSelectionAnchors(base, active);
+    base = applyOutfitSpiceLayers(base);
+    base = applyPetiteLoliBias('outfit', base);
     if (isBodyFilterActive()) base = applyBodyHintsToSlot('outfit', base);
     base = applyOutfitToneSoft(base);
     return finalizeSlotText('outfit', base);
@@ -3850,7 +3998,12 @@ function rollOutfitSection() {
 
   // 無篩選：保留少量標籤混搭，但以完整服裝條目為主
   if (bank.length) {
-    if (Math.random() < 0.18) {
+    // 偏好「正常服裝+可疊色氣」條目（當有動作／調性時）
+    if (getDesiredSpiceLayerIds().length && Math.random() < 0.55) {
+      const normalish = bank.filter(e => isNormalClothesBase(e));
+      if (normalish.length) base = pick(normalish);
+    }
+    if (!base && Math.random() < 0.12) {
       const tags = rollCharTags('outfit');
       if (tags) base = tags;
     }
@@ -3861,8 +4014,12 @@ function rollOutfitSection() {
     }
   }
   if (!base) return '';
+  base = applyOutfitSpiceLayers(base);
+  base = applyPetiteLoliBias('outfit', base);
   if (isBodyFilterActive()) base = applyBodyHintsToSlot('outfit', base);
-  base = applyToneBoost('outfit', base);
+  // 有色氣疊層時勿用整段 tone outfit 覆寫
+  if (getDesiredSpiceLayerIds().length) base = applyOutfitToneSoft(base);
+  else base = applyToneBoost('outfit', base);
   return finalizeSlotText('outfit', base);
 }
 
@@ -3943,7 +4100,14 @@ function scoreBodyEntry(entry) {
   const frame = scoreBodyCategory(entry, BODY_FRAME_MARKERS, getActiveBodyIds(charBodyFrame));
   const breast = scoreBodyCategory(entry, BODY_BREAST_MARKERS, getActiveBodyIds(charBodyBreast));
   const figure = scoreBodyCategory(entry, BODY_FIGURE_MARKERS, getActiveBodyIds(charBodyFigure));
-  return frame.score + breast.score + figure.score;
+  let score = frame.score + breast.score + figure.score;
+  // 蘿莉／嬌小優先：命中 petite / flat / girlish 額外加權
+  const t = String(entry || '').toLowerCase();
+  if (getActiveBodyIds(charBodyFrame).includes('petite') || /petite|loli-style|small frame/.test(t)) {
+    if (/petite|small frame|loli/.test(t)) score += 1.8;
+    if (/flat chest|small breasts|girlish/.test(t)) score += 1.2;
+  }
+  return score;
 }
 
 function bodyCategorySatisfied(entry, markerMap, activeIds) {
@@ -3973,7 +4137,8 @@ function pickBodyScoredFromBank(bank) {
 }
 
 const BODY_HINT_PRIMARY = {
-  petite: 'petite body', slim: 'slim figure', average: 'average build', tall: 'tall slender',
+  petite: 'petite adult body, loli-style proportions, small frame',
+  slim: 'slim figure', average: 'average build', tall: 'tall slender',
   curvy: 'curvy figure', athletic: 'athletic build',
   flat: 'flat chest', small: 'small breasts', medium: 'medium breasts', large: 'large breasts', huge: 'huge breasts',
   slim_waist: 'slim waist', wide_hips: 'wide hips', long_legs: 'long legs',
@@ -3998,10 +4163,12 @@ function getMissingBodyHintTags(text) {
 }
 
 function applyBodyHintsToSlot(key, text) {
-  if (!text || !isBodyFilterActive() || !['subject', 'details'].includes(key)) return text;
+  if (!text || !isBodyFilterActive() || !['subject', 'details', 'outfit'].includes(key)) return text;
   const missing = getMissingBodyHintTags(text);
   if (!missing.length) return text;
-  return text + ', ' + missing.join(', ');
+  // outfit 只注入體型關鍵，避免塞太多
+  const tags = key === 'outfit' ? missing.slice(0, 2) : missing;
+  return text + ', ' + tags.join(', ');
 }
 
 function checkBodySoftConflicts() {
@@ -4698,14 +4865,28 @@ function rollCharSection(key) {
   if (bodyScored) {
     const picked = pickBodyScoredFromBank(bank);
     if (!picked) return '';
-    const boosted = applyToneBoost(key, applyBodyHintsToSlot(key, picked));
+    let boosted = applyToneBoost(key, applyBodyHintsToSlot(key, picked));
+    boosted = applyPetiteLoliBias(key, boosted);
     return finalizeSlotText(key, boosted);
+  }
+  // subject 無體態篩選時仍偏向嬌小
+  if (key === 'subject' && !isBodyFilterActive() && Math.random() < 0.55) {
+    const petiteBank = bank.filter(e => /petite|small frame|girlish|flat chest|loli/i.test(e));
+    if (petiteBank.length) {
+      let picked = pick(petiteBank);
+      picked = applyToneBoost(key, picked);
+      picked = applyPetiteLoliBias(key, picked);
+      return finalizeSlotText(key, picked);
+    }
   }
   if (Math.random() < 0.4) {
     const tags = rollCharTags(key);
-    if (tags) return finalizeSlotText(key, applyBodyHintsToSlot(key, tags));
+    if (tags) {
+      return finalizeSlotText(key, applyPetiteLoliBias(key, applyBodyHintsToSlot(key, tags)));
+    }
   }
-  const rolled = applyToneBoost(key, applyBodyHintsToSlot(key, pick(bank)));
+  let rolled = applyToneBoost(key, applyBodyHintsToSlot(key, pick(bank)));
+  rolled = applyPetiteLoliBias(key, rolled);
   return finalizeSlotText(key, rolled);
 }
 

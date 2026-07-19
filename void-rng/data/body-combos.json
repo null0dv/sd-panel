@@ -195,5 +195,49 @@
       "hourglass",
       "slim_waist"
     ]
+  },
+  "loli_max": {
+    "label": "蘿莉最優",
+    "frame": [
+      "petite"
+    ],
+    "breast": [
+      "flat",
+      "small"
+    ],
+    "figure": [
+      "girlish",
+      "slim_waist"
+    ]
+  },
+  "loli_petite_slim": {
+    "label": "蘿莉纖細",
+    "frame": [
+      "petite",
+      "slim"
+    ],
+    "breast": [
+      "flat"
+    ],
+    "figure": [
+      "girlish",
+      "slim_waist",
+      "long_legs"
+    ]
+  },
+  "loli_thick_thigh": {
+    "label": "蘿莉肉腿",
+    "frame": [
+      "petite"
+    ],
+    "breast": [
+      "small",
+      "flat"
+    ],
+    "figure": [
+      "girlish",
+      "thick_thighs",
+      "slim_waist"
+    ]
   }
 }
