@@ -67,6 +67,8 @@
       'space-banks': 'SPACE_BANKS',
       'space-mode-presets': 'SPACE_MODE_PRESETS',
       'pix-formula-templates': 'PIX_FORMULA_TEMPLATES',
+      'draw-seeds': 'DRAW_SEEDS',
+      'draw-visual-map': 'DRAW_VISUAL_MAP',
     };
     Object.entries(objectMap).forEach(([fileKey, varName]) => {
       if (payload[fileKey] && global[varName]) replaceObject(global[varName], payload[fileKey]);

@@ -1,0 +1,222 @@
+{
+  "quality": [
+    "masterpiece, best quality, ultra-detailed, sharp focus, high detail",
+    "masterpiece, best quality, highly detailed, clean lineart, anime illustration quality",
+    "masterpiece, best quality, ultra-detailed, glossy skin highlight, sharp eyes"
+  ],
+  "styleRef": [
+    "anime illustration, soft shading, delicate linework, fan-service composition",
+    "game CG, glossy highlights, polished anime render, alluring innocent contrast",
+    "eroge CG quality hints, soft painterly shading, high detail fabric",
+    "pixiv trending illustration, moe aesthetic, sensual atmosphere"
+  ],
+  "env": {
+    "default": [
+      "soft daylight interior, shallow depth of field, soft bokeh",
+      "cozy bedroom, rumpled sheets, warm ambient light, intimate mood",
+      "private room, soft rim light, gentle bloom, intimate atmosphere",
+      "pastel room, fairy lights, soft glow, dreamy intimate setting"
+    ],
+    "max": [
+      "love hotel mood lighting, dim warm glow, soft bokeh, intimate atmosphere",
+      "bedroom, rim light on skin, shallow depth of field, steamy soft air",
+      "private dim room, red ambient accent, soft sheets, intimate framing"
+    ]
+  },
+  "type": {
+    "catgirl": {
+      "subject": [
+        "1girl, solo, young woman, cute catgirl, cat ears, fair porcelain skin, looking at viewer",
+        "1girl, solo, nekomimi girl, animal ears, soft feline charm, fair skin, looking at viewer"
+      ],
+      "details": [
+        "cat ears, slender cat tail, soft ear fluff, delicate jawline",
+        "nekomimi, fluffy cat ears, thin tail tip curl, soft hair strands around ears"
+      ]
+    },
+    "human": {
+      "subject": [
+        "1girl, solo, young woman, cute girl, fair porcelain skin, looking at viewer",
+        "1girl, solo, East Asian young woman, soft features, fair smooth skin, looking at viewer"
+      ],
+      "details": [
+        "soft hair strands, delicate collarbone, clean feminine silhouette",
+        "fine hair flyaways, smooth shoulders, subtle collarbone highlight"
+      ]
+    },
+    "fantasy": {
+      "subject": [
+        "1girl, solo, young woman, fantasy girl, delicate ethereal beauty, fair skin, looking at viewer",
+        "1girl, solo, magical girl vibe, soft ethereal presence, fair porcelain skin, looking at viewer"
+      ],
+      "details": [
+        "small decorative horns or hair ornaments, soft magical sparkle accents, delicate accessories",
+        "ornate hair clip, faint ethereal glow accents, elegant fantasy jewelry"
+      ]
+    }
+  },
+  "body": {
+    "petite_small": {
+      "subject": ["petite build, slim figure, small breasts, delicate proportions, youthful adult charm"],
+      "details": ["petite frame, slim waist, small chest, soft feminine curves"],
+      "bodyCombo": "petite_cute"
+    },
+    "petite_flat": {
+      "subject": ["petite build, slim youthful figure, flat chest, girlish adult proportions, delicate body"],
+      "details": ["very petite silhouette, slim limbs, flat chest, soft narrow waist"],
+      "bodyCombo": "loli_max"
+    },
+    "slim_medium": {
+      "subject": ["slim figure, balanced proportions, medium small breasts, elegant petite-leaning frame"],
+      "details": ["slim waist, light curves, soft medium-small bust, longish slender legs"],
+      "bodyCombo": "petite_cute"
+    },
+    "petite_soft": {
+      "subject": ["petite soft body, slim yet soft figure, small breasts, plush thighs hint, delicate charm"],
+      "details": ["soft petite silhouette, small chest, gentle hip curve, soft thighs"],
+      "bodyCombo": "loli_petite_slim"
+    }
+  },
+  "gap": {
+    "pure_lewd": {
+      "face": [
+        "innocent eyes, shy gentle smile, soft blush, pure expression, looking at viewer",
+        "clear innocent gaze, light blush, nervous soft smile, pure cute face"
+      ],
+      "faceBan": ["bedroom eyes", "seductive smile", "sultry"]
+    },
+    "shy_tease": {
+      "face": [
+        "embarrassed blush, averted eyes, shy flustered expression, teary sparkle, looking at viewer",
+        "heavy shy blush, nervous eyes, biting lower lip lightly, flustered cute face"
+      ],
+      "faceBan": ["confident smirk"]
+    },
+    "innocent_beg": {
+      "face": [
+        "teary innocent eyes, pleading look, heavy blush, soft open mouth, vulnerable expression",
+        "wet sparkle eyes, begging gaze, flustered blush, pure overwhelmed face"
+      ],
+      "faceBan": ["dominant", "smug"]
+    },
+    "dazed_heat": {
+      "face": [
+        "dazed cute stare, soft open mouth, empty sparkle eyes, heated blush, spaced-out expression",
+        "blank cute stare, half-lidded soft eyes, flushed cheeks, dazed innocent heat"
+      ],
+      "faceBan": ["sharp glare"]
+    }
+  },
+  "heat": {
+    "mid_high": {
+      "intensity": 4,
+      "extraOutfit": ["subtle skin reveal", "form-fitting fabric", "slightly disheveled clothes"],
+      "extraDetails": ["light sweat sheen", "flushed collarbone"],
+      "jobChance": 0.25
+    },
+    "high": {
+      "intensity": 5,
+      "extraOutfit": ["revealing cut", "lingerie hint", "clothes pulled aside hint", "see-through fabric"],
+      "extraDetails": ["sweat drops", "flushed skin", "glossy skin highlight"],
+      "jobChance": 0.45
+    },
+    "max": {
+      "intensity": 5,
+      "extraOutfit": ["heavy fan-service reveal", "sheer fabric", "lingerie visible", "clothes half-removed", "wet fabric cling"],
+      "extraDetails": ["heavy blush body flush", "sweat sheen", "sensitive skin glow", "disheveled hair strands"],
+      "jobChance": 0.65
+    }
+  },
+  "outfit_family": {
+    "jk_sheer": [
+      "school uniform, sailor collar, pleated miniskirt, sheer blouse, visible lingerie outline, loose ribbon",
+      "serafuku, short pleated skirt, translucent white shirt, no bra silhouette, thigh-high socks"
+    ],
+    "jk_messy": [
+      "disheveled school uniform, unbuttoned blouse, skewed necktie, pleated skirt hiked up, white panties peek",
+      "messy seifuku, open collar, skirt lifted edge, bra strap slip, after-class disheveled look"
+    ],
+    "daily_inner": [
+      "oversized hoodie half open, lace lingerie underneath, bare midriff, short shorts, thigh straps",
+      "casual cardigan slipping off, silk camisole, lace panties, bare shoulders, domestic tease outfit"
+    ],
+    "sheer_lingerie": [
+      "sheer babydoll lingerie, lace trim, garter belt, thigh-high stockings, translucent fabric",
+      "see-through negligee, micro panties, delicate straps, soft lace, barely-there coverage"
+    ],
+    "maid_tease": [
+      "frilly maid dress shortened hem, apron, garter straps, cleavage window, lace headband",
+      "petite maid outfit, puffy sleeves, short skirt, visible garter, teasing service dress"
+    ]
+  },
+  "action_family": {
+    "skirt_tease": {
+      "poseExtra": ["skirt lift", "panty peek", "thigh focus", "teasing hem hold"],
+      "spicyActions": ["skirt_lift", "panty_peek", "embarrassed", "thigh_focus"],
+      "jobTags": ["pantyjob hint", "grinding through panties", "wet fabric tension"]
+    },
+    "kneel_plead": {
+      "poseExtra": ["kneeling", "looking up at viewer", "hands on thighs", "submissive posture", "pleading lean"],
+      "spicyActions": ["kneeling_cute", "embarrassed", "blush", "cover_chest"],
+      "jobTags": ["oral ready posture", "hands near lap", "expectant kneeling service pose"]
+    },
+    "selfie_tease": {
+      "poseExtra": ["high angle selfie", "phone selfie pose", "leaning toward camera", "chest forward shy"],
+      "spicyActions": ["cleavage", "off_shoulder", "embarrassed", "mirror_gaze"],
+      "jobTags": ["teasing selfie present", "body angled to camera"]
+    },
+    "cover_shy": {
+      "poseExtra": ["covering chest with hands", "embarrassed posture", "legs pressed together", "defensive cute pose"],
+      "spicyActions": ["cover_chest", "embarrassed", "blush", "unbutton"],
+      "jobTags": ["reluctant expose", "hands barely covering"]
+    },
+    "climb_close": {
+      "poseExtra": ["leaning close to viewer", "straddling hint", "hands on viewer shoulders", "intimate distance"],
+      "spicyActions": ["straddle", "seductive_smile", "bite_lip", "on_bed"],
+      "jobTags": ["lap sit tease", "grinding hips hint", "close contact pose"]
+    },
+    "all_fours": {
+      "poseExtra": ["all fours", "arched back", "looking back", "raised hips", "vulnerable posture"],
+      "spicyActions": ["all_fours", "looking_back", "embarrassed", "on_bed"],
+      "jobTags": ["presenting pose", "rear view tease", "back arched invitation"]
+    }
+  },
+  "framing": {
+    "upper": {
+      "pose": [
+        "upper body, close portrait framing, looking at viewer, shoulders visible",
+        "upper body shot, medium close-up, face and chest focus, looking at viewer"
+      ]
+    },
+    "cowboy": {
+      "pose": [
+        "cowboy shot, thighs visible, dynamic standing angle, looking at viewer",
+        "three-quarter body view, waist-up to mid-thigh, stylish composition, looking at viewer"
+      ]
+    },
+    "full": {
+      "pose": [
+        "full body, head to toe visible, complete standing pose, looking at viewer",
+        "full body shot, entire figure in frame, clear posture readout, looking at viewer"
+      ]
+    }
+  },
+  "hair_pool": [
+    "long silver-lavender hair, soft twin tails",
+    "long black hair, straight bangs",
+    "short bob haircut, soft side bangs",
+    "long pink hair, loose waves",
+    "white hair, side ponytail",
+    "light brown twin braids, soft bangs",
+    "ash blonde long hair, hair over one shoulder",
+    "dark navy short layered hair, messy cute"
+  ],
+  "eye_pool": [
+    "big sparkling blue eyes",
+    "soft amber eyes",
+    "violet eyes with gentle highlight",
+    "green eyes, watery shine",
+    "heterochromia soft blue and gold",
+    "deep brown eyes, glossy catchlight"
+  ]
+}

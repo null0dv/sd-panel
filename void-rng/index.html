@@ -35,7 +35,7 @@
     <button class="tb-btn" onclick="openLearnPanel()">📚 學習對話窗</button>
     <button class="tb-btn" onclick="exportCharBanks()">匯出辭庫</button>
     <button class="tb-btn" onclick="importCharBanks()">匯入辭庫</button>
-    <button class="tb-btn primary" onclick="generateChar()">🎲 亂數生成</button>
+    <button class="tb-btn primary" id="char-gen-btn" onclick="generateChar()">🎲 亂數生成</button>
   </div>
   <div class="topbar-actions" id="topbar-jewel" style="display:none">
     <button class="tb-btn" onclick="VoidSearch.focusSearch()">🔍 搜尋</button>
@@ -215,9 +215,11 @@
           <span class="pick-chip on" id="char-mode-mix" onclick="setCharMode('mix')">混合</span>
           <span class="pick-chip" id="char-mode-learn" onclick="setCharMode('learn')">學習</span>
           <span class="pick-chip" id="char-mode-template" onclick="setCharMode('template')">範本</span>
+          <span class="pick-chip" id="char-mode-draw" onclick="setCharMode('draw')" title="全自動反差抽卡 · 只出視覺 prompt">🔥抽卡</span>
           <span class="pick-chip on" id="char-fmt-structured" onclick="setCharFmt('structured')">分段</span>
           <span class="pick-chip" id="char-fmt-flat" onclick="setCharFmt('flat')">純標籤</span>
         </div>
+        <div class="mix-hint" id="char-draw-seed-hint" style="display:none">抽卡種子：—</div>
       </section>
       <details class="mix-zone" open data-rail-nav="outfit">
         <summary class="mix-zone-hd"><span class="mix-zone-title">服裝</span><button type="button" class="mix-reset" onclick="event.preventDefault();resetCharSpicyOutfits()">清</button></summary>
@@ -267,10 +269,10 @@
       </details>
       <div class="rail-sticky-cta">
         <div class="pick-grid gen-pick">
-          <button type="button" class="pick-btn primary" onclick="generateChar()">生成</button>
+          <button type="button" class="pick-btn primary" id="char-rail-gen-btn" onclick="generateChar()">生成</button>
           <button type="button" class="pick-btn" onclick="exploreOrganicCombo()">延伸</button>
         </div>
-        <p class="mix-foot">複選混搭 · 僅「無」與其他互斥</p>
+        <p class="mix-foot" id="char-rail-foot">複選混搭 · 僅「無」與其他互斥</p>
       </div>
       </div><!-- /standalone-char-sidebar -->
     </aside>
@@ -289,10 +291,11 @@
           <button type="button" class="compose-tile" onclick="applyContrastPreset('nullcraft_duo')">奈奈+小白</button>
           <button type="button" class="compose-tile" onclick="applyContrastPreset('nullcraft_weed')">WEED迷濛</button>
           <button type="button" class="compose-tile accent" onclick="collideOrganicCombo()">反差碰撞</button>
+          <button type="button" class="compose-tile accent" onclick="runDrawCard()" title="進入抽卡模式並全自動生成視覺 prompt">🔥抽卡生成</button>
           <button type="button" class="compose-tile" onclick="charComposeSmartFill()">智慧補齊</button>
           <button type="button" class="compose-tile primary" onclick="charComposeSave()">存入辭庫</button>
         </div>
-        <div class="char-compose-hint meta" id="char-compose-hint">輸入關鍵字 · 智慧補齊空白區塊 · 或點方塊快速碰撞</div>
+        <div class="char-compose-hint meta" id="char-compose-hint">輸入關鍵字 · 智慧補齊空白區塊 · 或點方塊快速碰撞 · 🔥抽卡＝全自動反差視覺</div>
       </div>
       <div class="char-prompt-compact ui-card ui-output-card">
         <div class="ui-head"><span class="ui-title">Prompt</span><span class="meta" id="char-meta">—</span></div>

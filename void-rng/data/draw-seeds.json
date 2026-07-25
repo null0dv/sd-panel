@@ -1,0 +1,44 @@
+{
+  "type": [
+    { "id": "catgirl", "label": "貓耳", "weight": 40 },
+    { "id": "human", "label": "純人", "weight": 35 },
+    { "id": "fantasy", "label": "幻想", "weight": 25 }
+  ],
+  "body": [
+    { "id": "petite_small", "label": "嬌小小胸", "weight": 42 },
+    { "id": "petite_flat", "label": "嬌小平胸", "weight": 28 },
+    { "id": "slim_medium", "label": "纖細中等", "weight": 18 },
+    { "id": "petite_soft", "label": "嬌小柔軟", "weight": 12 }
+  ],
+  "gap": [
+    { "id": "pure_lewd", "label": "清純×大膽", "weight": 40 },
+    { "id": "shy_tease", "label": "害羞×挑逗", "weight": 30 },
+    { "id": "innocent_beg", "label": "天真×求饒姿", "weight": 18 },
+    { "id": "dazed_heat", "label": "呆萌×發熱", "weight": 12 }
+  ],
+  "heat": [
+    { "id": "max", "label": "極限", "weight": 55 },
+    { "id": "high", "label": "高", "weight": 35 },
+    { "id": "mid_high", "label": "中高", "weight": 10 }
+  ],
+  "outfit_family": [
+    { "id": "jk_sheer", "label": "JK半透", "weight": 28 },
+    { "id": "jk_messy", "label": "JK凌亂", "weight": 22 },
+    { "id": "daily_inner", "label": "日常內性感", "weight": 20 },
+    { "id": "sheer_lingerie", "label": "輕薄內衣", "weight": 18 },
+    { "id": "maid_tease", "label": "女僕挑逗", "weight": 12 }
+  ],
+  "action_family": [
+    { "id": "skirt_tease", "label": "裙底暗示", "weight": 24 },
+    { "id": "kneel_plead", "label": "跪姿求饒", "weight": 20 },
+    { "id": "selfie_tease", "label": "自拍挑逗", "weight": 18 },
+    { "id": "cover_shy", "label": "遮羞反差", "weight": 16 },
+    { "id": "climb_close", "label": "貼近主動", "weight": 12 },
+    { "id": "all_fours", "label": "四肢著地", "weight": 10 }
+  ],
+  "framing": [
+    { "id": "upper", "label": "半身", "weight": 40 },
+    { "id": "cowboy", "label": "七分身", "weight": 25 },
+    { "id": "full", "label": "全身", "weight": 35 }
+  ]
+}

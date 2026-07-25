@@ -19,7 +19,9 @@
     "tone-markers.json",
     "pix-formula-templates.json",
     "nullcraft-char-banks.json",
-    "nullcraft-presets.json"
+    "nullcraft-presets.json",
+    "draw-seeds.json",
+    "draw-visual-map.json"
   ],
   "style": [
     "style-codes.json",
